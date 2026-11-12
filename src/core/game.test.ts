@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { evaluateGuess, generateSecret } from './game';
+import { evaluateGuess, generateSecret, countPossibleSecrets } from './game';
 
 describe('evaluateGuess', () => {
   it('counts all bulls when guess matches secret exactly', () => {
@@ -33,5 +33,18 @@ describe('generateSecret', () => {
   it('supports hexadecimal digits up to f for base 16', () => {
     const alwaysMaxRandom = () => 0.999;
     expect(generateSecret(3, 16, alwaysMaxRandom)).toBe('fed');
+  });
+});
+
+describe('countPossibleSecrets', () => {
+  it('calculates total unique combinations correctly for valid inputs', () => {
+    expect(countPossibleSecrets(2, 2)).toBe(2); // 2 * 1
+    expect(countPossibleSecrets(4, 10)).toBe(5040); // 10 * 9 * 8 * 7
+    expect(countPossibleSecrets(3, 16)).toBe(3360); // 16 * 15 * 14
+  });
+
+  it('handles edge cases properly', () => {
+    expect(countPossibleSecrets(0, 10)).toBe(1);
+    expect(countPossibleSecrets(5, 4)).toBe(0);
   });
 });
