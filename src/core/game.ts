@@ -45,12 +45,6 @@ export const generateSecret = (
   return pickUniqueChars(pool, length, random);
 };
 
-export const countPossibleSecrets = (length: number, base: number): number => {
-  void length;
-  void base;
-  return 0;
-};
-
 const createSecretCounter = () => {
   const cache = new Map<string, number>();
 
