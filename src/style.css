@@ -1,0 +1,10 @@
+body {
+    max-width: 1000px;
+    margin: 0 auto;
+    background-color: rgb(219, 238, 255);
+}
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
