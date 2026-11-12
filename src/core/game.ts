@@ -4,7 +4,16 @@ export interface GuessResult {
 }
 
 export const evaluateGuess = (secret: string, guess: string): GuessResult => {
-  void secret;
-  void guess;
-  return { bulls: 0, cows: 0 };
+  const secretChars = secret.toLowerCase().split('');
+  const guessChars = guess.toLowerCase().split('');
+
+  const bulls = guessChars.filter(
+    (char, index) => char === secretChars[index]
+  ).length;
+
+  const cows = guessChars.filter(
+    (char, index) => char !== secretChars[index] && secretChars.includes(char)
+  ).length;
+
+  return { bulls, cows };
 };
