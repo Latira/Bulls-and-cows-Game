@@ -1,0 +1,23 @@
+body {
+    max-width: 1000px;
+    margin: 0 auto;
+    background-color: rgb(219, 238, 255);
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.panel {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.row {
+    display: flex;
+    gap: 20px;
+}
