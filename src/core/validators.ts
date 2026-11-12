@@ -17,8 +17,17 @@ export const isValidGuess = (
   length: number,
   base: number
 ): boolean => {
-  void guess;
-  void length;
-  void base;
-  return false;
+  if (guess.length !== length) {
+    return false;
+  }
+
+  const normalized = guess.toLowerCase();
+  const chars = normalized.split('');
+  const isDigitValid = createDigitValidator(base);
+
+  if (!chars.every(isDigitValid)) {
+    return false;
+  }
+
+  return new Set(chars).size === length;
 };
