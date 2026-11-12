@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { createDigitValidator } from './validators';
+import { createDigitValidator, isValidGuess } from './validators';
 
 describe('createDigitValidator', () => {
   it('validates binary digits (base 2)', () => {
@@ -42,5 +42,26 @@ describe('createDigitValidator', () => {
     const isDecimalDigit = createDigitValidator(10);
     expect(isDecimalDigit('')).toBe(false);
     expect(isDecimalDigit('12')).toBe(false);
+  });
+});
+
+describe('isValidGuess', () => {
+  it('accepts valid guesses with unique characters for the given base', () => {
+    expect(isValidGuess('1234', 4, 10)).toBe(true);
+    expect(isValidGuess('1aF0', 4, 16)).toBe(true);
+    expect(isValidGuess('10', 2, 2)).toBe(true);
+  });
+
+  it('rejects guesses with wrong length or duplicate characters', () => {
+    expect(isValidGuess('123', 4, 10)).toBe(false);
+    expect(isValidGuess('12345', 4, 10)).toBe(false);
+    expect(isValidGuess('1123', 4, 10)).toBe(false);
+    expect(isValidGuess('aA12', 4, 16)).toBe(false);
+  });
+
+  it('rejects guesses containing digits invalid for the base', () => {
+    expect(isValidGuess('12', 2, 2)).toBe(false);
+    expect(isValidGuess('18', 2, 8)).toBe(false);
+    expect(isValidGuess('123g', 4, 16)).toBe(false);
   });
 });

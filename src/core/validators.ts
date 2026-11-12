@@ -11,3 +11,14 @@ export const createDigitValidator = (base: number) => {
     return allowedDigits.includes(char.toLowerCase());
   };
 };
+
+export const isValidGuess = (
+  guess: string,
+  length: number,
+  base: number
+): boolean => {
+  void guess;
+  void length;
+  void base;
+  return false;
+};
